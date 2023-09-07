@@ -1,22 +1,24 @@
+//your JS code here. If required.
 function secondHighest(arr) {
-			let first = -Infinity, second = -Infinity;
-			for (let i = 0; i < arr.length; i++) {
-				if (arr[i] > first) {
-				second = first;
-				first = arr[i];
-				} else if (arr[i] > second && arr[i] < first) {
-				second = arr[i];
-				}
-			}
-			return second;
-		}
+  if (arr.length <= 1) {
+    return -Infinity;
+  }
+  
+  // Remove duplicates from the array
+  const uniqueArr = [...new Set(arr)];
+  
+  // Sort the array in descending order
+  uniqueArr.sort((a, b) => b - a);
+  
+  if (uniqueArr.length <= 1) {
+    return -Infinity;
+  }
+  
+  return uniqueArr[1];
+}
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
+// Test the function with an example array
+const arr = [5, 10, 3, 8, 5, 2];
+const secondHighestElement = secondHighest(arr);
+console.log(`The second-highest element is: ${secondHighestElement}`);
+			
